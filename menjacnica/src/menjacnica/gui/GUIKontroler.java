@@ -20,7 +20,7 @@ public class GUIKontroler {
 
 	private static MenjacnicaGUI m;
 	private static MenjacnicaInterface menjacnica;
-	protected static Menjacnica sistem;
+	private static Menjacnica sistem;
 
 	/**
 	 * Launch the application.
@@ -59,10 +59,10 @@ public class GUIKontroler {
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				File file = fc.getSelectedFile();
 
-				sistem.sacuvajUFajl(file.getAbsolutePath());
+				menjacnica.sacuvajUFajl(file.getAbsolutePath());
 			}
 		} catch (Exception e1) {
-			JOptionPane.showMessageDialog(m.getContentPane(), e1.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(m, e1.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -77,7 +77,7 @@ public class GUIKontroler {
 				prikaziSveValute(model);
 			}
 		} catch (Exception e1) {
-			JOptionPane.showMessageDialog(m.getContentPane(), e1.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(m, e1.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -87,8 +87,7 @@ public class GUIKontroler {
 	}
 
 	public static void prikaziDodajKursGUI() {
-		DodajKursGUI prozor = new DodajKursGUI(m);
-		prozor.setLocationRelativeTo(m.getContentPane());
+		DodajKursGUI prozor = new DodajKursGUI();
 		prozor.setVisible(true);
 	}
 
@@ -106,7 +105,7 @@ public class GUIKontroler {
 		if (table.getSelectedRow() != -1) {
 			MenjacnicaTableModel model = (MenjacnicaTableModel) (table.getModel());
 			IzvrsiZamenuGUI prozor = new IzvrsiZamenuGUI(m, model.vratiValutu(table.getSelectedRow()));
-			prozor.setLocationRelativeTo(m.getContentPane());
+			prozor.setLocationRelativeTo(m);
 			prozor.setVisible(true);
 		}
 	}
@@ -135,7 +134,7 @@ public class GUIKontroler {
 			prikaziSveValute(vratiTabelu().getModel());
 
 		} catch (Exception e1) {
-			JOptionPane.showMessageDialog(m.getContentPane(), e1.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(m, e1.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
